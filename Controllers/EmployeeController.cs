@@ -9,13 +9,16 @@ namespace dependency_injection.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeService _employeeService;
+        private readonly ICustomerService _customerService;
 
 
         // constructor injection
         public EmployeeController(
-            IEmployeeService employeeService)
+            IEmployeeService employeeService,
+            ICustomerService customerService)
         {
-            this._employeeService = employeeService;
+            _employeeService = employeeService;
+            _customerService = customerService;
         }
 
 

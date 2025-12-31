@@ -21,10 +21,6 @@ public class Program
        builder.Services.AddTransient<IEmployeeService, EmployeeService>();
 
 
-
-
-
-
        builder.Services.AddScoped<ICustomerService, CustomerService>();
 
 
