@@ -19,17 +19,12 @@ public class Program
         builder.Services.AddOpenApi();
 
        builder.Services.AddTransient<IEmployeeService, EmployeeService>();
-
-
        builder.Services.AddScoped<ICustomerService, CustomerService>();
 
+        builder.Services.AddKeyedTransient<INotificationService, EmailNotification>("Email");
+        builder.Services.AddKeyedTransient<INotificationService, SMSNotification>("SMS");
 
 
-        builder.Services.AddKeyedScoped<
-            INotificationService, EmailNotification>("Email");
-
-        builder.Services.AddKeyedScoped<
-            INotificationService, SMSNotification>("SMS");
 
 
         builder.Services.AddSwaggerGen();

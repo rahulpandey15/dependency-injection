@@ -10,21 +10,28 @@ namespace dependency_injection.Controllers
     {
         private readonly IEmployeeService _employeeService;
         private readonly ICustomerService _customerService;
+        private readonly INotificationService notificationService;
 
 
         // constructor injection
         public EmployeeController(
             IEmployeeService employeeService,
-            ICustomerService customerService)
+            ICustomerService customerService,
+            [FromKeyedServices("SMS")]INotificationService notificationService)
         {
             _employeeService = employeeService;
             _customerService = customerService;
+            this.notificationService = notificationService;
         }
 
 
         [HttpGet]
         public async Task<IActionResult> Get()
-        { 
+        {
+
+            var notification = notificationService.SendNotification();//
+
+
             var empObj = _employeeService.GetEmployees();
 
             return Ok(empObj);
